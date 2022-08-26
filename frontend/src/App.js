@@ -23,39 +23,39 @@ function App() {
 
   const handleNewBirdFormSubmit = (event) => {
     event.preventDefault()
-    axios.post('http://localhost:3000/', {
+    axios.post('http://localhost:3000/sightings', {
       bird: newbirds,
       location: newlocation,
       image: newimage
     }).then(() => {
-      axios.get('http://localhost:3000/').then((response) => {
+      axios.get('http://localhost:3000/sightings').then((response) => {
         setAllBirds(response.data)
       })
     })
   }
 
   useEffect(() => {
-    axios.get('http://localhost:3000/').then((response) => {
+    axios.get('http://localhost:3000/sightings').then((response) => {
       setAllBirds(response.data)
     })
   })
 
   const handleDelete = (birdData) => {
-    axios.delete(`http://localhost:3000//${birdData._id}`).then((response) => {
+    axios.delete(`http://localhost:3000/sightings/${birdData._id}`).then((response) => {
       setAllBirds(response.data)
     })
   }
 
   const updateBird = (e, bird) => {
     e.preventDefault()
-    axios.put(`http://localhost:3000//${bird._id}`,
+    axios.put(`http://localhost:3000/sightings/${bird._id}`,
       {
         bird: newbirds,
         location: newlocation,
         image: newimage
 
       }).then(() => {
-        axios.get('http://localhost:3000/').then((response) => {
+        axios.get('http://localhost:3000/sightings').then((response) => {
 
           setAllBirds(response.data)
         })
