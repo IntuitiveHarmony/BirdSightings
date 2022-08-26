@@ -10,11 +10,11 @@ function App() {
   const [allBirds, setAllBirds] = useState([])
 
   const handleNewBirdChange = (event) => {
-    setName(event.target.value);
+    setBird(event.target.value);
   }
 
   const handleNewLocationChange = (event) => {
-    setSpecies(event.target.value)
+    setLocation(event.target.value)
   }
 
   const handleNewImageChange = (event) => {
@@ -83,6 +83,8 @@ function App() {
             <p>{birds.location}</p>
 
             <>
+            <details>
+            <summary>Edit</summary>
             <form onSubmit={(event) => {updateBird(event, birds)}}>
               <label>Bird: <input type="text" defaultValue={birds.bird} onChange={handleNewBirdChange} /></label><br/>
               <label>Location: <input type="text" defaultValue={birds.location} onChange={handleNewLocationChange} /></label><br/>
@@ -91,7 +93,8 @@ function App() {
             </form>
             <button onClick={(event) => {
               handleDelete(birds)
-            }}></button>
+            }}>Delete</button>
+            </details>
             </>
           </>
         )
