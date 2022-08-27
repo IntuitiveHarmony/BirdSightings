@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
 
 function App() {
   const [newimage, setImage] = useState('')
@@ -10,11 +12,11 @@ function App() {
   const [allBirds, setAllBirds] = useState([])
 
   const handleNewBirdChange = (event) => {
-    setName(event.target.value);
+    setBird(event.target.value);
   }
 
   const handleNewLocationChange = (event) => {
-    setSpecies(event.target.value)
+    setLocation(event.target.value)
   }
 
   const handleNewImageChange = (event) => {
@@ -67,12 +69,21 @@ function App() {
       <h1>Bird Sighting</h1>
       <section>
         <h2>Add Bird</h2>
-        <form onSubmit={handleNewBirdFormSubmit}>
-          Bird: <input type="text" onChange={handleNewBirdChange} /><br />
-          location: <input type="text" onChange={handleNewLocationChange} /><br />
-          image: <input type="text" onChange={handleNewImageChange} /><br />
-          <input type="submit" value="Add Bird" />
-        </form>
+        <Form onSubmit={handleNewBirdFormSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Bird</Form.Label>
+            <Form.Control type="text" onChange={handleNewBirdChange} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>location</Form.Label>
+            <Form.Control type="text" onChange={handleNewLocationChange} />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Image</Form.Label>
+            <Form.Control type="text" onChange={handleNewImageChange} />
+          </Form.Group>
+          <Button variant="primary" type="submit">submit</Button>
+        </Form>
       </section>
       <h2>Birds</h2>
       {allBirds.map((birds) => {
@@ -83,15 +94,15 @@ function App() {
             <p>{birds.location}</p>
 
             <>
-            <form onSubmit={(event) => {updateBird(event, birds)}}>
-              <label>Bird: <input type="text" defaultValue={birds.bird} onChange={handleNewBirdChange} /></label><br/>
-              <label>Location: <input type="text" defaultValue={birds.location} onChange={handleNewLocationChange} /></label><br/>
-              <label>Image: <input type="text" defaultValue={birds.image} onChange={handleNewImageChange} /></label><br/>
-              <input type="submit" value="update"/>
-            </form>
-            <button onClick={(event) => {
-              handleDelete(birds)
-            }}></button>
+              <form onSubmit={(event) => { updateBird(event, birds) }}>
+                <label>Bird: <input type="text" defaultValue={birds.bird} onChange={handleNewBirdChange} /></label><br />
+                <label>Location: <input type="text" defaultValue={birds.location} onChange={handleNewLocationChange} /></label><br />
+                <label>Image: <input type="text" defaultValue={birds.image} onChange={handleNewImageChange} /></label><br />
+                <input type="submit" value="update" />
+              </form>
+              <button onClick={(event) => {
+                handleDelete(birds)
+              }}></button>
             </>
           </>
         )
