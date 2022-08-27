@@ -90,7 +90,7 @@ function App() {
             <p>{birds.location}</p>
 
             <>
-            <details>
+            
               <div className="form-style">
               <form onSubmit={(event) => { updateBird(event, birds) }}>
                 <label>Bird: <input type="text" defaultValue={birds.bird} onChange={handleNewBirdChange} /></label><br />
@@ -99,7 +99,7 @@ function App() {
                 <input type="submit" value="update" />
               </form>
               </div>
-              </details>
+              
               <button onClick={(event) => {
                 handleDelete(birds)
               }}>Delete</button>
