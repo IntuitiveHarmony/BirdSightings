@@ -88,9 +88,7 @@ function App() {
             <img src={birds.image} />
             <p>{birds.bird}</p>
             <p>{birds.location}</p>
-
             <>
-            
               <div className="form-style">
               <form onSubmit={(event) => { updateBird(event, birds) }}>
                 <label>Bird: <input type="text" defaultValue={birds.bird} onChange={handleNewBirdChange} /></label><br />
@@ -103,6 +101,18 @@ function App() {
               <button onClick={(event) => {
                 handleDelete(birds)
               }}>Delete</button>
+            <details>
+            <summary>Edit</summary>
+            <form onSubmit={(event) => {updateBird(event, birds)}}>
+              <label>Bird: <input type="text" defaultValue={birds.bird} onChange={handleNewBirdChange} /></label><br/>
+              <label>Location: <input type="text" defaultValue={birds.location} onChange={handleNewLocationChange} /></label><br/>
+              <label>Image: <input type="text" defaultValue={birds.image} onChange={handleNewImageChange} /></label><br/>
+              <input type="submit" value="update"/>
+            </form>
+            <button onClick={(event) => {
+              handleDelete(birds)
+            }}>Delete</button>
+            </details>
             </>
           </>
         )
